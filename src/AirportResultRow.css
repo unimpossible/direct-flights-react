@@ -5,6 +5,7 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   cursor: pointer;
   height:32px;
+  overflow: hidden;
 }
 
 .component-airport-result-row:hover {

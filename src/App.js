@@ -11,6 +11,8 @@ class App extends PureComponent {
     this.state = {
       isModalOpen: false,
       filteredAirport: filterAirport('', 40),
+      overflowOriginal: document.body.style.overflow,
+      positionOriginal: document.body.style.position,
     };
   }
 
@@ -29,12 +31,16 @@ class App extends PureComponent {
           isModalOpen:true,
           currentAirport:data,
       });
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
   }
 
   handleCloseModal = () => {
       this.setState({
           isModalOpen: false
       });
+      document.body.style.overflow = this.state.overflowOriginal;
+      document.body.style.position = this.state.positionOriginal;
   }
 
   render() {
