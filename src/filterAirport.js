@@ -1,24 +1,19 @@
 import airportList from './airports.json';
-
-function sortResults(arr, prop, asc)
-{
-    return arr.sort(function(a, b) {
-        if (asc)
-            return a[prop] > b[prop] ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-        else
-            return b[prop] > a[prop] ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-
-    });
-}
+import sortResults from './sort.js';
 
 export default function filterAirport(searchText, maxResults) {
   var l = airportList.filter((airport) => {
+      var query = searchText.toLowerCase();
     if (airport.iata.startsWith('\\'))
         return false;
-    if (airport.name.toLowerCase().includes(searchText.toLowerCase())) {
+    if (airport.name.toLowerCase().includes(query)) {
       return true;
     }
-    if (airport.iata.toLowerCase().includes(searchText)) {
+    if (airport.iata.toLowerCase().includes(query)) {
+      return true;
+    }
+    if (airport.city.toLowerCase().includes(query))
+    {
       return true;
     }
     return false;

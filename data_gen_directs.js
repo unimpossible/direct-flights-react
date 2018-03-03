@@ -5,6 +5,21 @@ var airlineList = require('./src/airlines.json');
 var get_directs = function()
 {
     var allDirects = {};
+    var allAirportIatas = [];
+    var activeAirlineList = [];
+
+    for (i = 0; i < airportList.length; i++)
+    {
+        allAirportIatas.push(airportList[i]["iata"]);
+    }
+
+    for (i = 0; i < airlineList.length; i++)
+    {
+        if(airlineList[i]["active"] != 'Y')
+            continue;
+        
+        activeAirlineList.push(airlineList[i]["iata"]);
+    }
 
     for (i = 0; i < airportList.length; i++)
     {
@@ -29,8 +44,11 @@ var get_directs = function()
             if (route.codeshare != '')
                 continue;
 
-            //if (route.active!='Y')
-            //    continue;
+            if (!(allAirportIatas.includes(route.airport_dst)))
+                continue;
+
+            if (!activeAirlineList.includes(route.airline))
+                continue;
 
             row["key"] = j;
             row["dst_iata"] = route.airport_dst;

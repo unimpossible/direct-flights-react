@@ -10,10 +10,10 @@ class AirportResultRow extends PureComponent {
               className="component-airport-result-row"
             >
             <span className="title">
-                {this.props.iata}  -  {this.props.name}
+                {this.props.iata}  -  {this.props.name}, {this.props.city}
             </span>
-            <span className="city-country hidden-xs">
-                {this.props.city}, {this.props.country}
+            <span className="subtitle hidden-xs">
+                {this.props.country}
             </span>
             <span className="info">
                 Click to get flights
