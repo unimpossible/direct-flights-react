@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import AirportResultRow from './AirportResultRow';
 import './AirportResults.css';
+
+var Table = require('react-bootstrap').Table
 
 class AirportResults extends PureComponent
 {
@@ -16,18 +17,27 @@ class AirportResults extends PureComponent
     render()
     {
         return(
-        <div className="component-airport-results">
+        <Table responsive className="table-striped component-airport-results">
+          <thead>
+            <th>IATA</th>
+            <th>City</th>
+            <th>Name</th>
+            <th className="hidden-xs">Country</th>
+          </thead>
+          <tbody>
             {this.props.airportData.map((airportData)=>
-                <AirportResultRow
-                    onClick= {(data) => this.props.onRowClick(data)}
+                <tr
+                    onClick= {() => this.props.onRowClick(airportData.iata)}
                     key={airportData.iata}
-                    iata={airportData.iata}
-                    city={airportData.city}
-                    country={airportData.country}
-                    name={airportData.name}
-                />
+                >
+                <td>{airportData.iata}</td>
+                <td className="title">{airportData.city}</td>
+                <td>{airportData.name}</td>
+                <td className="hidden-xs">{airportData.country}</td>
+                </tr>
             )}
-        </div>
+          </tbody>
+        </Table>
         );
     }
 }

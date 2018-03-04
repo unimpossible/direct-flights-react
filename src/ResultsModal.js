@@ -82,7 +82,7 @@ class ResultsModal extends PureComponent
               <Modal.Title>{this.props.iata} Direct Flights</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Table className="modal-result-table" responsive>
+                <Table className="table-striped modal-result-table" responsive>
                     <thead>
                     <tr>
                       <th>IATA</th>

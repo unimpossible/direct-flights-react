@@ -6,6 +6,8 @@ export default function filterAirport(searchText, maxResults) {
       var query = searchText.toLowerCase();
     if (airport.iata.startsWith('\\'))
         return false;
+    if (airport.iata === '')
+      return false;
     if (airport.name.toLowerCase().includes(query)) {
       return true;
     }
